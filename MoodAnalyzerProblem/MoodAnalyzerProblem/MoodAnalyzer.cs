@@ -1,4 +1,7 @@
-﻿using System;
+﻿using MoodAnalyzerProblem;
+using System;
+using System.Runtime.Serialization;
+using static MoodAnalyzerProblem.MoodAnalyzerException;
 
 namespace MoodAnalyzerProblem
 {
@@ -18,6 +21,10 @@ namespace MoodAnalyzerProblem
         {
             try
             {
+                if (this.message.Equals(string.Empty))
+                {
+                    throw new MoodAnalyzerException(MoodAnalyzerException.ExceptionType.ENTERED_EMPTY, "Mood should not be Empty");
+                }
                 if (message.Contains("Sad"))
                 {
                     return "Sad";
@@ -27,10 +34,11 @@ namespace MoodAnalyzerProblem
                     return "Happy";
                 }
             }
-            catch (Exception)
+            catch (MoodAnalyzerException)
             {
-                return "Happy";
+                throw new MoodAnalyzerException(MoodAnalyzerException.ExceptionType.ENTERED_NULL, "mood should not be null");
             }
         }
     }
 }
+   

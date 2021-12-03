@@ -1,5 +1,8 @@
+using System;
 using MoodAnalyzerProblem;
+using static MoodAnalyzerProblem.MoodAnalyzer;
 using NUnit.Framework;
+
 
 namespace MoodAnalyzerTesting
 {
@@ -38,5 +41,37 @@ namespace MoodAnalyzerTesting
             string result = mood.AnalyzeMood();
             Assert.AreEqual(result, "Happy");
         }
+
+        [Test]
+        public void GivenNullMood_WhenAnalyze_ShouldThrowInvalidMoodException()
+        {
+            try
+            {
+                string message = null;
+                MoodAnalyzer mood = new MoodAnalyzer(message);
+                string result = mood.AnalyzeMood();
+            }
+            catch (MoodAnalyzerException e)
+            {
+                Assert.AreEqual("Mood should not be Null", e.Message);
+            }
+        }
+        [Test]
+        public void GivenEMPTYMood_WhenAnalyze_ShouldThrowInvalidMoodException()
+        {
+            try
+            {
+                string message = "";
+                MoodAnalyzer mood = new MoodAnalyzer(message);
+                string result = mood.AnalyzeMood();
+            }
+            catch (MoodAnalyzerException e)
+            {
+                Assert.AreEqual("Mood should not be Empty", e.Message);
+            }
+        }
     }
 }
+
+
+  
