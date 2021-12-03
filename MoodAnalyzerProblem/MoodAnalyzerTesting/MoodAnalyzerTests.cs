@@ -29,5 +29,14 @@ namespace MoodAnalyzerTesting
             string result = mood.AnalyzeMood();
             Assert.AreEqual(result, "Happy");
           }
+
+        [Test]
+        public void GivenNullMessage_WhenAnalyze_ShouldReturnHappy()
+        {
+            string message = "Null";
+            MoodAnalyzer mood = new MoodAnalyzer(message);
+            string result = mood.AnalyzeMood();
+            Assert.AreEqual(result, "Happy");
+        }
     }
 }
