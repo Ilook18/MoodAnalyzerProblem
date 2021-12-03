@@ -21,9 +21,9 @@ namespace MoodAnalyzerProblem
         {
             try
             {
-                if (this.message.Equals(string.Empty))
+                if (this.message==null)
                 {
-                    throw new MoodAnalyzerException(MoodAnalyzerException.ExceptionType.ENTERED_EMPTY, "Mood should not be Empty");
+                    throw new MoodAnalyzerException(MoodAnalyzerException.ExceptionType.ENTERED_EMPTY, "Mood should not be null");
                 }
                 if (message.Contains("Sad"))
                 {
